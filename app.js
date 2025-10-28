@@ -85,10 +85,10 @@ app.use((req,res,next) => {
 });
 
 
-// // Home route
-// app.get("/", (req, res) => {
-//   res.render("home"); 
-// });
+// Home route
+app.get("/", (req, res) => {
+  res.redirect("/listings"); 
+});
 
 app.use("/listings",listingRouter);
 app.use("/listings/:id/reviews",reviewRouter);

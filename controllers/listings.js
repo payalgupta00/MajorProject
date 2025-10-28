@@ -24,10 +24,24 @@ res.render("listings/show.ejs", { listing });
 module.exports.createListing = async (req, res, next) => {
   try {
     // ✅ 1. Get geolocation (latitude, longitude) from OpenStreetMap
-    const geoResponse = await fetch(
-      `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(req.body.listing.location)}`
-    );
-    const geoData = await geoResponse.json();
+   let geoData = [];
+try {
+  const geoResponse = await fetch(
+    `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(req.body.listing.location)}`
+  );
+
+  const text = await geoResponse.text();
+  try {
+    geoData = JSON.parse(text);
+  } catch (e) {
+    console.error("⚠️ OpenStreetMap returned non-JSON data:", text.slice(0, 200));
+    geoData = [];
+  }
+} catch (err) {
+  console.error("🌐 Error fetching geolocation:", err.message);
+  geoData = [];
+}
+
 
     // ✅ 2. Create new listing
     const newListing = new Listing(req.body.listing);
