@@ -1,0 +1,23 @@
+### GET request
+GET http://localhost:3000/listings
+
+### POST request
+POST http://localhost:3000/listings
+Content-Type: application/json
+
+{
+  "title": "New Listing",
+  "price": 1500,
+  "location": "Delhi"
+}
+
+### PUT request
+PUT http://localhost:3000/listings/6704b5b2
+Content-Type: application/json
+
+{
+  "price": 1800
+}
+
+### DELETE request
+DELETE http://localhost:3000/listings/6704b5b2

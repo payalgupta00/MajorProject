@@ -1,0 +1,12 @@
+<% layout("/layouts/boilerplate") %>
+<div class="container mt-4">
+
+  <% if (currentUser) { %>
+    <h2>Welcome to WanderLust, <%= currentUser.username %>!</h2>
+    <p>Explore amazing listings and adventures around the world!</p>
+    <a href="/logout" class="btn btn-danger mt-3">Logout</a>
+  <% } else { %>
+    <h2>Welcome to WanderLust!</h2>
+    <p>Please <a href="/login">log in</a> or <a href="/signup">sign up</a> to continue.</p>
+  <% } %>
+</div>
